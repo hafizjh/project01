@@ -2,7 +2,7 @@ name: hello-world
 on: push
 jobs:
   my-job:
-    runs-on: macos-latest
+    runs-on: self-hosted
     steps:
-      - name: macos
-        run: set
+      - name: Try self hosted runner
+        run: ls

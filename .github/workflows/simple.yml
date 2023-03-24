@@ -4,8 +4,11 @@ jobs:
   building-docker-image:
     runs-on: self-hosted
     steps:
-      - name: Checkout Code
+      - name: Checkout code 
         uses: actions/checkout@v3
+      - name: Clean
+        continue-on-error: true
+        run: docker stop project01 && docker rm project01 && docker rmi hafizjh/project01
       - name: Build Image 
         run: docker build -t hafizjh/project01 .
       - name: List Image

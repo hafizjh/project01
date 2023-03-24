@@ -1,8 +1,16 @@
-name: hello-world
+name: website project
 on: push
 jobs:
-  my-job:
+  building-docker-image:
     runs-on: self-hosted
     steps:
-      - name: Try self hosted runner
-        run: ls
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Build Image 
+        run: docker build -t hafizjh/project01 .
+      - name: List Image
+        run: docker images
+      - name: Upload image to Docker Hub
+        run: docker push hafizjh/project01
+      - name: Deploy
+        run: docker run -d --name=project01 -p 8080:80 hafizjh/project01

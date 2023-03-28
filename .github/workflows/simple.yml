@@ -11,9 +11,7 @@ jobs:
         run: docker stop project01 && docker rm project01 && docker rmi hafizjh/project01
       - name: Build Image 
         run: docker build -t hafizjh/project01 .
-      - name: List Image
-        run: docker images
-      - name: Upload image to Docker Hub
-        run: docker push hafizjh/project01
-      - name: Deploy
-        run: docker run -d --name=project01 -p 8080:80 hafizjh/project01
+      - name: kube-deploy
+        run: kubectl apply -f deployment.yaml
+      - name: list deployments
+        run: kubectl get deployments

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hafiz-deployment
+  labels:
+    app: project01
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: project01
+  template:
+    metadata:
+      labels:
+        app: project01
+    spec:
+      containers:
+      - name: web
+        image: DOCKERID/project01
+        ports:
+        - containerPort: 80
